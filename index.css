@@ -122,3 +122,10 @@ button:after {
 .close_menu{
     display: none;
 }
+
+.response_output {
+    width: 100px;
+    height: 25px;
+    position: absolute;
+    text-align: center
+}

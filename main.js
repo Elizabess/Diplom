@@ -43,7 +43,6 @@ function openElement(element){
 
 function connectGenerateHomogeneous(){
   document.querySelector(".generate_first_order").addEventListener('click', () => FirstOrder.generateFirstOrder())
-
   document.querySelector(".generate_second_order").addEventListener('click', () => SecondOrder.generateSecondOrder())
   document.querySelector(".generate_third_order").addEventListener('click', () => ThirdOrder.generateThirdOrder())
 }
@@ -154,6 +153,20 @@ class Homogeneous {
     return this._generate()
   }
   
+  // generate() {
+  //   const randomNumber = getRandomNumber(1, 3);
+  //   let equation
+
+  //   if (randomNumber === 1) {
+  //     equation = FirstOrder.generateFirstOrder()
+  //   } else if (randomNumber === 2) {
+  //     equation = SecondOrder.generateSecondOrder()
+  //   } else {
+  //     equation = ThirdOrder.generateThirdOrder()
+  //   }
+
+  //   return equation
+  // }
   _generate() { //генерация однородных
     const orderRatio = getRandomNumber(1, 5);
     
@@ -168,7 +181,7 @@ class Homogeneous {
 
 class Power extends Homogeneous{
   getResult() {
-    return super._generate() + this._generate()
+    return super._generate() + this._generate() //было _generate() 
   }
   
   _generate() { //генерация степенных неоднородных
@@ -227,6 +240,8 @@ function createTaskElement(textEquations, textAns){
   const bodyDiv = document.createElement('div');
   const equationText = document.createElement('p')
   const showAnsButton  = document.createElement('button')
+  showAnsButton.className = "response_output";
+  equationText.className = "response_text";
 
   bodyDiv.appendChild(equationText);
   bodyDiv.appendChild(showAnsButton);
