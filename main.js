@@ -1,4 +1,5 @@
 function main(){ 
+  // connectOpenMenuButtons()
   connectGenerateHomogeneous()
 }
 
@@ -73,10 +74,13 @@ class ThirdOrder {
 
 function createAnswerStrFirst(roots) {
   if (roots[0] !== 0) {
-    return `a(n) = C1  * ${roots[0]}^(n-1)`;
+    return `a(n) = C1  * ${roots[0]}^(n-1)`
   }
-  else {
+  else if (roots[0] === 0){
     return `a(n) = 0`
+  }
+  else if (roots[0] === 1) {
+    return `a(n) = C1`
   }
 }
 
@@ -90,23 +94,56 @@ function createAnswerStrSecond(roots) {
   else if (((roots[0] !== 0) && (roots[1] !== 0)) && (roots[0] === roots[1])) {
     return `a(n) = (C1 + C2 * n ) * ${roots[0]}^(n-1)`
   }
+  else if ((roots[0] === 0) && (roots[1] !== 0)) {
+    return `a(n) = C2 * ${roots[1]}^(n-1)`
+  }
+  else if ((roots[1] === 0) && (roots[0] !== 0)) {
+    return `a(n) = C1 * ${roots[0]}^(n-1)`
+  }
+  else if ((roots[0] === 0) && (roots[1] === 0)) {
+    return `a(n) = 0`
+  }
   else if ((roots[0] !== 0) && (roots[1] !== 0)) {
     return `a(n) = C1 * ${roots[0]}^(n-1) + C2 * ${roots[1]}^(n-1)`;
   }
 }
 
 function createAnswerStrThird(roots) {
-  if (((roots[0] !== 0) && (roots[1] !== 0) && (roots[2] !== 0)) && (roots[0] === 1)) {
+  if (((roots[1] !== 0) && (roots[2] !== 0)) && (roots[0] === 1)) {
     return `a(n) = C1 + C2 * ${roots[1]}^(n-1)+ C3 * ${roots[2]}^(n-1)`
   }
-  else if (((roots[0] !== 0) && (roots[1] !== 0)) && (roots[1] === 1)) {
-    return `a(n) = C1 * ${roots[0]}^(n-1) + C2`
+  else if (((roots[0] !== 0) && (roots[2] !== 0)) && (roots[1] === 1)) {
+    return `a(n) = (C1 * ${roots[0]}^(n-1) + C2 + C3 * ${roots[2]}^(n-1)`
   }
-  else if (((roots[0] !== 0) && (roots[1] !== 0)) && (roots[0] === roots[1])) {
-    return `a(n) = (C1 + C2 * n ) * ${roots[0]}^(n-1)`
+  else if ((roots[0] !== 0) && (roots[1] !== 0) && (roots[2] === 1)) {
+    return `a(n) = (C1 * ${roots[0]}^(n-1) + C2 * ${roots[1]}^(n-1) + C3`
   }
-  else if ((roots[0] !== 0) && (roots[1] !== 0)) {
-    return `a(n) = C1 * ${roots[0]}^(n-1) + C2 * ${roots[1]}^(n-1)`;
+  else if ((roots[0] === roots[1]) && (roots[2] !== 0)) {
+    return `a(n) = (C1 + C2 * n ) * ${roots[0]}^(n-1)+ C3 * ${roots[2]}^(n-1)`
+  }
+  else if ((roots[0] === roots[2]) && (roots[1] !== 0)) {
+    return `a(n) = (C1 + C3 * n ) * ${roots[0]}^(n-1)+ C2 * ${roots[1]}^(n-1)`
+  }
+  else if ((roots[1] === roots[2]) && (roots[2] !== 0)) {
+    return `a(n) = (C2 + C3 * n ) * ${roots[1]}^(n-1)+ C1 * ${roots[0]}^(n-1)`
+  }
+  else if ((roots[1] === roots[2]) && (roots[0] === roots[1])) {
+    return `a(n) = (C1 + C2 * n + C3 * n^2 ) * ${roots[0]}^(n-1)`
+  }
+  else if ((roots[0] === 0) && (roots[1] !== 0) && (roots[2] !== 0)) {
+    return `a(n) = C2 * ${roots[1]}^(n-1) + C3 * ${roots[2]}^(n-1)`
+  }
+  else if ((roots[1] === 0) && (roots[0] !== 0) && (roots[2] !== 0)) {
+    return `a(n) = C1 * ${roots[0]}^(n-1) + C3 * ${roots[2]}^(n-1)`
+  }
+  else if ((roots[2] === 0) && (roots[0] !== 0) && (roots[1] !== 0)) {
+    return `a(n) = C1 * ${roots[0]}^(n-1) + C2 * ${roots[1]}^(n-1)`
+  }
+  else if ((roots[0] === 0) && (roots[1] === 0) && (roots[2] === 0)) {
+    return `a(n) = 0`
+  }
+  else if ((roots[0] !== 0) && (roots[1] !== 0) && (roots[2] !== 0)) {
+    return `a(n) = C1 * ${roots[0]}^(n-1) + C2 * ${roots[1]}^(n-1) + C3 * ${roots[2]}^(n-1)`
   }
 }
   // if ((roots.length === 1) && (roots[0] !== 0)) {
