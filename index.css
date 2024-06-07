@@ -129,3 +129,10 @@ button:after {
     position: absolute;
     text-align: center
 }
+
+.result_homogeneous {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
